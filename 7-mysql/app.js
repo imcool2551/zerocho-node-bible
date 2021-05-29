@@ -26,6 +26,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use('/', require('./routes/indexRouter'));
+app.use('/users', require('./routes/usersRouter'));
+app.use('/comments', require('./routes/commentsRouter'));
+
 app.use((req, res, next) => {
   const error = new Error(`${req.method} ${req.url} 라우터가 없습니다`);
   error.status = 404;
